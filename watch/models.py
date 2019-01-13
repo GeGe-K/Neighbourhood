@@ -45,10 +45,10 @@ class UserProfile(models.Model):
     last_name = models.CharField(max_length=20,blank=True)
     email = models.CharField(max_length = 40, blank = True)
     user = models.ForeignKey(User,on_delete=models.CASCADE)
-    neighborhood = models.ForeignKey('Neighborhood', on_delete=models.CASCADE, null=True, blank=True)
+    neighborhood = models.ForeignKey('Neighbourhood', on_delete=models.CASCADE, null=True, blank=True)
 
-    def assign_neighborhood(self, neighborhood):
-        self.neighborhood = neighborhood
+    def assign_neighbourhood(self, neighbourhood):
+        self.neighbourhood = neighborhood
         self.save()
 
     def save_profile(self):
