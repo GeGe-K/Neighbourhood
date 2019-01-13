@@ -63,9 +63,9 @@ class UserProfile(models.Model):
 class Business(models.Model):
     business_name = models.CharField(max_length = 50)
     owner = models.ForeignKey(User, on_delete = models.CASCADE)
-    business_location = models.CharField(max_length=30, blank=True)
+    business_location = models.CharField(max_length=30, blank = True)
     business_neighbourhood = models.ForeignKey(
-        'Neighbourhood', on_delete=models.CASCADE)
+        'Neighbourhood', on_delete = models.CASCADE)
     email = models.EmailField()
 
     def create_business(self):
@@ -76,7 +76,7 @@ class Business(models.Model):
 
     @classmethod
     def find_business(cls, business_id):
-        business = cls.objects.get(id=business_id)
+        business = cls.objects.get(id = business_id)
         return business
 
     def update_business(self, business_name):
@@ -88,11 +88,22 @@ class Business(models.Model):
 
 
 class EmergencyContacts(models.Model):
-    name = models.CharField(max_length=30)
-    contacts = models.CharField(max_length=20)
+    name = models.CharField(max_length = 30)
+    contacts = models.CharField(max_length = 20)
     email = models.EmailField()
     neighbourhood_contact = models.ForeignKey(
-        'Neighbourhood', on_delete=models.CASCADE)
+        'Neighbourhood', on_delete = models.CASCADE)
 
     def __str__(self):
         return f'{self.name},{self.email}'
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=40)
+    post_description = models.TextField(blank = True)
+    posted_by = models.ForeignKey(User, on_delete = models.CASCADE)
+    post_hood = models.ForeignKey('Neighbourhood', on_delete = models.CASCADE)
+    posted_on = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f'{self.title},{self.post_hood.neighbourhood_name}'
