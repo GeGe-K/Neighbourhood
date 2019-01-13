@@ -85,3 +85,14 @@ class Business(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class EmergencyContacts(models.Model):
+    name = models.CharField(max_length=30)
+    contacts = models.CharField(max_length=20)
+    email = models.EmailField()
+    neighbourhood_contact = models.ForeignKey(
+        'Neighbourhood', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name},{self.email}'
