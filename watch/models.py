@@ -107,3 +107,10 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title},{self.post_hood.neighbourhood_name}'
+
+
+class Location(models.Model):
+    name = models.CharField(max_length = 40)
+
+    def __str__(self):
+        return self.name
