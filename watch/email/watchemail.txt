@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the Neighbourhood Watch, where you find alerts, comments and businesses around and about your neighboorhood.
