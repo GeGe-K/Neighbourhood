@@ -61,6 +61,9 @@ class UserProfile(models.Model):
         return f'{self.user.username}'
 
 class Business(models.Model):
+    '''
+    Business class has the following properties
+    '''
     business_name = models.CharField(max_length = 50)
     owner = models.ForeignKey(User, on_delete = models.CASCADE)
     business_location = models.CharField(max_length=30, blank = True)
@@ -88,6 +91,9 @@ class Business(models.Model):
 
 
 class EmergencyContacts(models.Model):
+    '''
+    Emergency contact class has the following properties
+    '''
     name = models.CharField(max_length = 30)
     contacts = models.CharField(max_length = 20)
     email = models.EmailField()
@@ -99,6 +105,10 @@ class EmergencyContacts(models.Model):
 
 
 class Post(models.Model):
+
+    '''
+    Post class has the following properties
+    '''
     title = models.CharField(max_length=40)
     post_description = models.TextField(blank = True)
     posted_by = models.ForeignKey(User, on_delete = models.CASCADE)
