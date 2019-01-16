@@ -58,13 +58,13 @@
 <div class="container">
 
     <!-- Modal -->
-    <div id="{{image.id}}" class="modal fade" role="dialog">
+    <div id="madal12" class="modal fade" role="dialog">
         <div class="modal-dialog image">
 
         <!-- Emergency Contacts Modal -->
         <div class="modal-content">
             <div class="modal-body">
-                <h4 class="center-align">Emergency Contacts</h4>
+                <h4 class="text-center">Emergency Contacts</h4>
                 <div class="divider"></div>
                 <ul>
                     {% for emergency in emergencies %}
@@ -92,10 +92,67 @@
                 <div class="card-body">
                     <div class="section">
                         <h5 class="card-title text-center">Alerts and Meetings</h5>
+                        <a href="#modal3" data-target="modal3" class="modal-trigger btn-floating">add</a>
+                        
+                        <!-- Post Form Modal -->
+                        <div id="modal3" class="modal">
+                            <div class="modal-content">
+                                <h4 class="text-center">Post Alert/Meeting</h4>
+                                <div class="divider"></div>
+                                <form action="{% url 'neighborhood' neighborhood.id %}" method="POST">
+                                    {% csrf_token %}
+                                    {% bootstrap_form form%}
+                                    <button class="btn btn-primary btn-sm" type="submit" name="action">Post</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="divider"></div>
+                        {% if posts %}
+                        {% for post in posts %}
+                        <div class="section">
+                            <h6 class="text-center">{{post.title}}</h6>
+                            <p class="text-center">{{post.post_description}}</p>
+                            <p>
+                                <strong>Posted on {{post.posted_on}} by {% if post.posted_by == request.user %}me{% else
+                                    %}{{post.posted_by.username}}{% endif %}
+                                </strong>
+                            </p>
+                        </div>
+                        <div class="divider"></div>
+                        {% endfor %}
+                        {% else %}
+                        <h6>Nothing has been posted yet</h6>
+                        {% endif %}
                     </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Businesses</h5>
+                    {% if businesses %}
+                    <ul>
+                    {% for business in businesses %}
+                        <li>
+                            <ul>
+                                <li>
+                                    <h6>{{business.name}}</h6>
+                                </li>
+                                <li>Located At: {{business.business_location}}</li>
+                                <li>Business email: {{business.email}}</li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    <h6>No businesses yet</h6>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}

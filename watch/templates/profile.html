@@ -1,5 +1,41 @@
 {% extends 'base.html' %}
-{% load bootstrap4 %}
 {% block content %}
 <div class="container">
-    {% if profile.first_name and profile.last_name %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{profile.user}}</h2>
+                    <p class="card-text">{{profile.email}}</p>
+                </div>
+            </div>
+            {% if user == profile.user %}
+            <a href="{% url 'update_profile' profile.id %}" class="btn btn-primary btn-sm mb-3">Update profile</a>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h3 class="text-center my-4">Projects</h3>
+            {% if projects %}
+            <div class="row">
+                {% for project in projects %}
+                <div class="col-md-4 ">
+                    <div class="card mb-3">
+                        <a href="{% url 'project' project.id %}">
+                            <img src="{{project.image.url}}" alt="image" class="card-img-top">
+                        </a>
+                        <div class="card-body">
+                            <h3 class="card-title">{{project.title}}</h3>
+                            <p class="card-text">{{project.description}}</p>
+                            <p class="card-link">{{project.link}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <h2 class="text-center mb-5">There are no projects!</h2>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

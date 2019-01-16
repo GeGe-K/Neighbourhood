@@ -126,3 +126,16 @@ def search(request):
         message='No such business found.'
         return render(request, 'search.html', {'message': message})
     return render(request, 'search.html', {'message': message, 'searched_business': searched_business})
+
+
+def update_profile(request, id):
+    if request.method == "POST":
+        profile = Profile.objects.get(id=id)
+        form = UpdateProfile(request.POST or None,request.FILES or None, instance=profile)
+        if form.is_valid():
+            edit = form.save(commit=False)
+            edit.save()
+            return redirect('profile', username=request.user)
+    else:
+        form = UpdateProfile()
+    return render(request, 'update_profile.html', {'form': form})
