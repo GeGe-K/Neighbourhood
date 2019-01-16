@@ -3,14 +3,21 @@ from django.contrib.auth.models import User
 import datetime as dt
 
 # Create your models here.
-class Neighbourhood(models.Model):
 
+
+class Location(models.Model):
+    name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.name
+        
+class Neighbourhood(models.Model):
 
     '''
     Neighbourhood class has the following properties
     '''
 
-    neighborhood_name = models.CharField(max_length = 30)
+    neighbourhood_name = models.CharField(max_length = 30)
     neighborhood_location = models.ForeignKey('Location', on_delete = models.CASCADE, null = True, blank =True)
     occupants = models.IntegerField(null = True)
     admin = models.ForeignKey(User, on_delete = models.CASCADE)
@@ -22,7 +29,7 @@ class Neighbourhood(models.Model):
         self.delete()
 
     def __str__(self):
-        return self.name
+        return self.neighbourhood_name
 
     @classmethod
     def find_neighbourhood(cls, neighbourhood_id):
@@ -37,6 +44,7 @@ class Neighbourhood(models.Model):
         self.save()
 
 class UserProfile(models.Model):
+
     '''
     UserProfile class has the following properties
     '''
@@ -61,12 +69,13 @@ class UserProfile(models.Model):
         return f'{self.user.username}'
 
 class Business(models.Model):
+
     '''
     Business class has the following properties
     '''
+
     business_name = models.CharField(max_length = 50)
     owner = models.ForeignKey(User, on_delete = models.CASCADE)
-    business_location = models.CharField(max_length=30, blank = True)
     business_neighbourhood = models.ForeignKey(
         'Neighbourhood', on_delete = models.CASCADE)
     email = models.EmailField()
@@ -87,13 +96,15 @@ class Business(models.Model):
         self.save()
 
     def __str__(self):
-        return f'{self.name}'
+        return self.business_name
 
 
 class EmergencyContacts(models.Model):
+
     '''
     Emergency contact class has the following properties
     '''
+
     name = models.CharField(max_length = 30)
     contacts = models.CharField(max_length = 20)
     email = models.EmailField()
@@ -109,6 +120,7 @@ class Post(models.Model):
     '''
     Post class has the following properties
     '''
+
     title = models.CharField(max_length=40)
     post_description = models.TextField(blank = True)
     posted_by = models.ForeignKey(User, on_delete = models.CASCADE)
@@ -119,8 +131,4 @@ class Post(models.Model):
         return f'{self.title},{self.post_hood.neighbourhood_name}'
 
 
-class Location(models.Model):
-    name = models.CharField(max_length = 40)
 
-    def __str__(self):
-        return self.name

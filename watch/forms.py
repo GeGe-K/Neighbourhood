@@ -1,27 +1,27 @@
 from .models import Neighbourhood, Business, UserProfile, Post
 from django.contrib.auth.models import User
-from django.forms import ModelForm
+from django import forms
 
 
-class NeighborrhoodForm(ModelForm):
+class NeighbourhoodForm(forms.ModelForm):
     class Meta:
         model = Neighbourhood
-        fields = ('neighborhood_name',)
+        fields = ('neighbourhood_name',)
 
 
-class UpdateProfileForm(ModelForm):
+class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'location')
+        fields = ('first_name', 'last_name')
 
 
-class AddBusinessForm(ModelForm):
+class AddBusinessForm(forms.ModelForm):
     class Meta:
         model = Business
-        fields = ('name', 'email', 'business_location')
+        fields = ('business_name', 'email', 'business_neighbourhood')
 
 
-class PostForm(ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'post_description',)

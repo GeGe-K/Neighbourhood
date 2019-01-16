@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if searched_business %}
+<h3 class="text-center">Found search result</h3>
+<div class="divider"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-text text-center">{{searched_business.name}}</h4>
+                    <ul>
+                        <li>
+                            <p class="card-text">Owner: {{searched_business.owner.username}}</p>
+                        </li>
+                        <li>
+                            <p class="card-text">Email: {{searched_business.email}}</p>
+                        </li>
+                        <li>
+                            Located At: {{searched_business.business_location}}
+                        </li>
+                        <li>
+                            <p class="card-text">Neighbourhood: {{searched_business.business_neighbourhood}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

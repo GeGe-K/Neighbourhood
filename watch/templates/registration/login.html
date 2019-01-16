@@ -1,0 +1,18 @@
+{% extends 'registration/base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="card my-5 w-50 mx-auto text-center" id="login">
+        <div class="card-body">
+            <form action="/accounts/login/" method="post">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type="submit" class="btn btn-primary btn-sm">Log in</button>
+            </form>
+            <p>Don't have an account? <a href="/accounts/register/">Register now</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

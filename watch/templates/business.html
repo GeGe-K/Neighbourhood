@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+    <div class="card" id="upload">
+        <div class="card-body">
+            <span class="card-title text-center">Add a business</span>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <input type="submit" value="Submit" class="btn btn-primary btn-sm">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
