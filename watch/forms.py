@@ -12,7 +12,7 @@ class NeighbourhoodForm(forms.ModelForm):
 class UpdateProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name')
+        fields = ('first_name', 'last_name',)
 
 
 class AddBusinessForm(forms.ModelForm):
@@ -25,3 +25,4 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'post_description',)
+

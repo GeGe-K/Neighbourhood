@@ -131,11 +131,11 @@ def search(request):
 def update_profile(request, id):
     if request.method == "POST":
         profile = Profile.objects.get(id=id)
-        form = UpdateProfile(request.POST or None,request.FILES or None, instance=profile)
+        form = UpdateProfileForm(request.POST or None,request.FILES or None, instance=profile)
         if form.is_valid():
             edit = form.save(commit=False)
             edit.save()
             return redirect('profile', username=request.user)
     else:
-        form = UpdateProfile()
+        form = UpdateProfileForm()
     return render(request, 'update_profile.html', {'form': form})

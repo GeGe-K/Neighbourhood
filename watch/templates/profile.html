@@ -14,28 +14,25 @@
             {% endif %}
         </div>
         <div class="col-md-8">
-            <h3 class="text-center my-4">Projects</h3>
-            {% if projects %}
+            <h3 class="text-center my-4">Businesses</h3>
+            {% if businessess %}
             <div class="row">
-                {% for project in projects %}
-                <div class="col-md-4 ">
-                    <div class="card mb-3">
-                        <a href="{% url 'project' project.id %}">
-                            <img src="{{project.image.url}}" alt="image" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h3 class="card-title">{{project.title}}</h3>
-                            <p class="card-text">{{project.description}}</p>
-                            <p class="card-link">{{project.link}}</p>
-                        </div>
+            {% for business in businesses  %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h3 class="card-title">{business.business_name}}</h3>
+                        <p class="card-text">{business.owner}}</p>
+                        <p class="card-text">{business.neighbourhood_location}}</p>
+                        <p class="card-text">{business.email}}</p>
+                        <p><a href="{% url 'add_business' %}"></a></p>
                     </div>
                 </div>
-                {% endfor %}
             </div>
-            {% else %}
-            <h2 class="text-center mb-5">There are no projects!</h2>
-            {% endif %}
+            {% endfor %}
         </div>
+        {% else %}
+        <h2 class="text-center mb-5">There are no businesses!</h2>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
