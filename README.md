@@ -20,13 +20,13 @@ As a user, I would like to:
 * Change My neighborhood when I decide to move out.
 * Only view details of a single neighborhood.
 
-** Specifications
+## Specifications
 | Behaviour | Input | Output |
 | :---------------- | :---------------: | ------------------: |
 | The program should navigate to the login page on load | **On page load, click on get started** | Navigate to the login page|
 | Display neibhbourhoods | **Miotoni** | Redirected to a page with alerts, messages, businesses from that naighbourhood |
 | Display post a message | **Click button add** | The message/alert is displayed showing by whom and when |
-| View profile | **CGloria** | Redirected to the profile page |
+| View profile | **Gloria** | Redirected to the profile page |
 
 ## Technologies Used
 * Virtual environment
